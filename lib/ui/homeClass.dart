@@ -110,10 +110,29 @@ class HomeClick extends StatefulWidget {
 
 class HomeClickLister extends State<HomeClick> {
   String name = '';
+  String MyNumber = '';
 
   void OnClickBtn() {
     setState(() {
       name = ' Mohamed Hassan';
+    });
+  }
+
+  void OnFlatBtn() {
+    setState(() {
+      name = 'FlatButton';
+    });
+  }
+
+  void OnHome() {
+    setState(() {
+      MyNumber = 'OnHome';
+    });
+  }
+
+  void OnAirPlan() {
+    setState(() {
+      MyNumber = 'OnAirPlan';
     });
   }
 
@@ -131,7 +150,21 @@ class HomeClickLister extends State<HomeClick> {
             new Text('Hello $name'),
             new RaisedButton(
                 onPressed: OnClickBtn,
-                child: new Text('Hello Mohamed'))
+                child: new Text('Hello Mohamed')),
+         //   new FlatButton(onPressed: OnFlatBtn, child: new Text('Click me ')),
+            new Text('Hello $MyNumber'),
+            new IconButton(icon: new Icon(Icons.home), onPressed: OnHome),
+            new IconButton(icon: new Icon(Icons.airplanemode_active), onPressed: OnAirPlan),
+            new Text('User input'),
+            new TextField(
+              autocorrect: true,
+              autofocus: true,
+              decoration: new InputDecoration(
+                icon: new Icon(Icons.account_circle),
+                labelText: 'your name',
+                hintText: 'name',),
+              keyboardType: TextInputType.datetime,
+            )
           ],
         ),
       ),
