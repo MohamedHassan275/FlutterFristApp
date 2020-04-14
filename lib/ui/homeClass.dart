@@ -117,6 +117,10 @@ class HomeClickLister extends State<HomeClick> {
   bool value2 = false;
   bool value3 = false;
 
+  bool value4 = false;
+  bool value5 = false;
+  bool value6 = false;
+
   void onChangedValue1(bool value) {
     setState(() {
       value1 = value;
@@ -130,6 +134,24 @@ class HomeClickLister extends State<HomeClick> {
   void onChangedValue3(bool value) {
     setState(() {
       value3 = value;
+    });
+  }
+
+  void onChangedValue4(bool value) {
+    setState(() {
+      value4 = value;
+    });
+  }
+
+  void onChangedValue5(bool value) {
+    setState(() {
+      value5 = value;
+    });
+  }
+
+  void onChangedValue6(bool value) {
+    setState(() {
+      value6 = value;
     });
   }
 
@@ -182,28 +204,37 @@ class HomeClickLister extends State<HomeClick> {
 //            new Text('Hello $MyNumber'),
 //            new IconButton(icon: new Icon(Icons.home), onPressed: OnHome),
 //            new IconButton(icon: new Icon(Icons.airplanemode_active), onPressed: OnAirPlan),
-            new Text('$MyName'),
-            new TextField(
-              autocorrect: true,
-              autofocus: true,
-              decoration: new InputDecoration(
-                icon: new Icon(Icons.account_circle),
-                labelText: 'your name',
-                hintText: 'name',
-              ),
-              keyboardType: TextInputType.text,
-              onChanged: OnChangeValue,
-            ),
+//            new Text('$MyName'),
+//            new TextField(
+//              autocorrect: true,
+//              autofocus: true,
+//              decoration: new InputDecoration(
+//                icon: new Icon(Icons.account_circle),
+//                labelText: 'your name',
+//                hintText: 'name',
+//              ),
+//              keyboardType: TextInputType.text,
+//              onChanged: OnChangeValue,
+//            ),
             new Checkbox(value: value1, onChanged: onChangedValue1,activeColor: Colors.orange),
             new Checkbox(value: value2, onChanged: onChangedValue2,activeColor:Colors.limeAccent),
             new CheckboxListTile(
               value: value3,
               onChanged: onChangedValue3,
-              title: new Text('hello mohamed'),
-              subtitle: new Text('how are you'),
+              title: new Text('hello mohamed its CheckboxListTile'),
+              subtitle: new Text('its CheckboxListTile'),
+              activeColor: Colors.red,
+              secondary: new Icon(Icons.add_a_photo),
+            ),
+            new Switch(value: value4, onChanged: onChangedValue4,activeColor: Colors.blue),
+            new Switch(value: value5, onChanged: onChangedValue5,activeColor: Colors.indigo),
+            new SwitchListTile(value: value6, onChanged: onChangedValue6,
+              title: new Text('hello mohamed its SwitchListTile'),
+              subtitle: new Text('its SwitchListTile'),
               activeColor: Colors.red,
               secondary: new Icon(Icons.airplanemode_active),
-            ),
+            )
+
           ],
         ),
       ),
