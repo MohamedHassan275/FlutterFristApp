@@ -111,6 +111,27 @@ class HomeClick extends StatefulWidget {
 class HomeClickLister extends State<HomeClick> {
   String name = '';
   String MyNumber = '';
+  String MyName = '';
+
+  bool value1 = false;
+  bool value2 = false;
+  bool value3 = false;
+
+  void onChangedValue1(bool value) {
+    setState(() {
+      value1 = value;
+    });
+  }
+  void onChangedValue2(bool value) {
+    setState(() {
+      value2 = value;
+    });
+  }
+  void onChangedValue3(bool value) {
+    setState(() {
+      value3 = value;
+    });
+  }
 
   void OnClickBtn() {
     setState(() {
@@ -136,6 +157,12 @@ class HomeClickLister extends State<HomeClick> {
     });
   }
 
+  void OnChangeValue(String text) {
+    setState(() {
+      MyName = 'OnChange :  $text';
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -147,24 +174,36 @@ class HomeClickLister extends State<HomeClick> {
         padding: new EdgeInsets.all(22.0),
         child: new Column(
           children: <Widget>[
-            new Text('Hello $name'),
-            new RaisedButton(
-                onPressed: OnClickBtn,
-                child: new Text('Hello Mohamed')),
-         //   new FlatButton(onPressed: OnFlatBtn, child: new Text('Click me ')),
-            new Text('Hello $MyNumber'),
-            new IconButton(icon: new Icon(Icons.home), onPressed: OnHome),
-            new IconButton(icon: new Icon(Icons.airplanemode_active), onPressed: OnAirPlan),
-            new Text('User input'),
+//            new Text('Hello $name'),
+//            new RaisedButton(
+//                onPressed: OnClickBtn,
+//                child: new Text('Hello Mohamed')),
+//         //   new FlatButton(onPressed: OnFlatBtn, child: new Text('Click me ')),
+//            new Text('Hello $MyNumber'),
+//            new IconButton(icon: new Icon(Icons.home), onPressed: OnHome),
+//            new IconButton(icon: new Icon(Icons.airplanemode_active), onPressed: OnAirPlan),
+            new Text('$MyName'),
             new TextField(
               autocorrect: true,
               autofocus: true,
               decoration: new InputDecoration(
                 icon: new Icon(Icons.account_circle),
                 labelText: 'your name',
-                hintText: 'name',),
-              keyboardType: TextInputType.datetime,
-            )
+                hintText: 'name',
+              ),
+              keyboardType: TextInputType.text,
+              onChanged: OnChangeValue,
+            ),
+            new Checkbox(value: value1, onChanged: onChangedValue1,activeColor: Colors.orange),
+            new Checkbox(value: value2, onChanged: onChangedValue2,activeColor:Colors.limeAccent),
+            new CheckboxListTile(
+              value: value3,
+              onChanged: onChangedValue3,
+              title: new Text('hello mohamed'),
+              subtitle: new Text('how are you'),
+              activeColor: Colors.red,
+              secondary: new Icon(Icons.airplanemode_active),
+            ),
           ],
         ),
       ),
