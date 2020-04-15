@@ -109,6 +109,38 @@ class HomeClick extends StatefulWidget {
 }
 
 class HomeClickLister extends State<HomeClick> {
+
+  Future<void> _neverSatisfied() async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Hello Mohamed Hassan'),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: <Widget>[
+                Text('You will never be satisfied.'),
+                Text('You\’re like me. I’m never satisfied.'),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            FlatButton(
+              child: Text('ok',style: new TextStyle(
+                fontSize: 17,color: Colors.white70,fontStyle: FontStyle.italic,backgroundColor: Colors.red,
+              ),),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+
   String name = '';
   String MyNumber = '';
   String MyName = '';
@@ -224,7 +256,7 @@ class HomeClickLister extends State<HomeClick> {
               title: new Text('hello mohamed its CheckboxListTile'),
               subtitle: new Text('its CheckboxListTile'),
               activeColor: Colors.red,
-              secondary: new Icon(Icons.add_a_photo),
+              secondary: new Icon(Icons.check_box),
             ),
             new Switch(value: value4, onChanged: onChangedValue4,activeColor: Colors.blue),
             new Switch(value: value5, onChanged: onChangedValue5,activeColor: Colors.indigo),
@@ -232,10 +264,51 @@ class HomeClickLister extends State<HomeClick> {
               title: new Text('hello mohamed its SwitchListTile'),
               subtitle: new Text('its SwitchListTile'),
               activeColor: Colors.red,
-              secondary: new Icon(Icons.airplanemode_active),
-            )
-
+              secondary: new Icon(Icons.switch_camera),
+            ),
+            new RaisedButton.icon(onPressed: _neverSatisfied, icon: new Icon(Icons.notifications_active),
+                label: new Text('Get Notification')),
           ],
+        ),
+
+      ),
+      drawer: new Drawer(
+        child: new Container(
+          alignment: Alignment.center,
+          padding: EdgeInsets.all(22.0),
+          child: new Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              new Text('Welcome Mohamed Hassan',
+              textDirection: TextDirection.ltr,
+              style: new TextStyle(
+                color: Colors.indigoAccent,
+                fontSize: 15,
+                fontWeight: FontWeight.bold,
+                fontStyle: FontStyle.italic,
+              ),),
+              new Text('Home Main',
+                textDirection: TextDirection.ltr,
+                style: new TextStyle(
+                  color: Colors.indigoAccent,
+                  fontSize: 15,
+                  fontWeight: FontWeight.bold,
+                  fontStyle: FontStyle.italic,
+                ),),
+              new Checkbox(value: value3, onChanged: onChangedValue3),
+              new Checkbox(value: value4, onChanged: onChangedValue4),
+              new Checkbox(value: value5, onChanged: onChangedValue5),
+              new CheckboxListTile(value: value6, onChanged: onChangedValue6,activeColor: Colors.orange,
+              title: new Text('Do you want Notification'),secondary: new Icon(Icons.notifications_active),
+              selected: false,checkColor: Colors.yellow,),
+              new CheckboxListTile(value: value1, onChanged: onChangedValue1,activeColor: Colors.blue,
+                title: new Text('Do you want Notification for update app'),secondary: new Icon(Icons.notifications_active),
+                selected: false,checkColor: Colors.red,),
+              new CheckboxListTile(value: value2, onChanged: onChangedValue2,activeColor: Colors.cyan,
+                title: new Text('Do you want Access Gps in app'),secondary: new Icon(Icons.notifications_active),
+                selected: false,checkColor: Colors.indigo,),
+            ],
+          ),
         ),
       ),
     );
