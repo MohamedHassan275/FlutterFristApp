@@ -109,7 +109,6 @@ class HomeClick extends StatefulWidget {
 }
 
 class HomeClickLister extends State<HomeClick> {
-
   Future<void> _neverSatisfied() async {
     return showDialog<void>(
       context: context,
@@ -120,19 +119,22 @@ class HomeClickLister extends State<HomeClick> {
           content: SingleChildScrollView(
             child: ListBody(
               children: <Widget>[
-                Text('You will never be satisfied.'),
-                Text('You\’re like me. I’m never satisfied.'),
+                Text('You will have notification in your app. ',style: new TextStyle(fontSize: 15),),
+                Text('You\’re like the app. I’m never have seen app like this. ',style: new TextStyle(fontSize: 15),),
               ],
             ),
           ),
           actions: <Widget>[
             FlatButton(
-              child: Text('ok',style: new TextStyle(
-                fontSize: 17,color: Colors.white70,fontStyle: FontStyle.italic,backgroundColor: Colors.red,
-              ),),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
+              child: Text(
+                'ok',
+                style: new TextStyle(
+                  fontSize: 17,
+                  color: Colors.red,
+                  fontStyle: FontStyle.italic,
+                ),
+              ),
+              onPressed: () => Navigator.of(context).pop(),
             ),
           ],
         );
@@ -140,6 +142,31 @@ class HomeClickLister extends State<HomeClick> {
     );
   }
 
+  void ShowBottomSheetNotification() {
+
+    showModalBottomSheet(
+        context: context,
+        builder: (BuildContext context) {
+          return new Container(
+            padding: EdgeInsets.all(22.0),
+            child: new Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                new Text(
+                  'Welcome Mohamed Hassan',
+                  style: new TextStyle(
+                      fontStyle: FontStyle.italic,
+                      fontSize: 17,
+                      color: Colors.indigo),
+                ),
+                new FlatButton(
+                    onPressed: () => Navigator.pop(context),
+                    child: new Text('Close'))
+              ],
+            ),
+          );
+        });
+  }
 
   String name = '';
   String MyNumber = '';
@@ -158,11 +185,13 @@ class HomeClickLister extends State<HomeClick> {
       value1 = value;
     });
   }
+
   void onChangedValue2(bool value) {
     setState(() {
       value2 = value;
     });
   }
+
   void onChangedValue3(bool value) {
     setState(() {
       value3 = value;
@@ -248,8 +277,14 @@ class HomeClickLister extends State<HomeClick> {
 //              keyboardType: TextInputType.text,
 //              onChanged: OnChangeValue,
 //            ),
-            new Checkbox(value: value1, onChanged: onChangedValue1,activeColor: Colors.orange),
-            new Checkbox(value: value2, onChanged: onChangedValue2,activeColor:Colors.limeAccent),
+            new Checkbox(
+                value: value1,
+                onChanged: onChangedValue1,
+                activeColor: Colors.orange),
+            new Checkbox(
+                value: value2,
+                onChanged: onChangedValue2,
+                activeColor: Colors.limeAccent),
             new CheckboxListTile(
               value: value3,
               onChanged: onChangedValue3,
@@ -258,19 +293,32 @@ class HomeClickLister extends State<HomeClick> {
               activeColor: Colors.red,
               secondary: new Icon(Icons.check_box),
             ),
-            new Switch(value: value4, onChanged: onChangedValue4,activeColor: Colors.blue),
-            new Switch(value: value5, onChanged: onChangedValue5,activeColor: Colors.indigo),
-            new SwitchListTile(value: value6, onChanged: onChangedValue6,
+            new Switch(
+                value: value4,
+                onChanged: onChangedValue4,
+                activeColor: Colors.blue),
+            new Switch(
+                value: value5,
+                onChanged: onChangedValue5,
+                activeColor: Colors.indigo),
+            new SwitchListTile(
+              value: value6,
+              onChanged: onChangedValue6,
               title: new Text('hello mohamed its SwitchListTile'),
               subtitle: new Text('its SwitchListTile'),
               activeColor: Colors.red,
               secondary: new Icon(Icons.switch_camera),
             ),
-            new RaisedButton.icon(onPressed: _neverSatisfied, icon: new Icon(Icons.notifications_active),
+            new RaisedButton.icon(
+                onPressed: _neverSatisfied,
+                icon: new Icon(Icons.notifications_active),
                 label: new Text('Get Notification')),
+            new RaisedButton.icon(
+                onPressed: ShowBottomSheetNotification,
+                icon: new Icon(Icons.notifications),
+                label: new Text('Get Bottom Sheet Notification')),
           ],
         ),
-
       ),
       drawer: new Drawer(
         child: new Container(
@@ -279,34 +327,56 @@ class HomeClickLister extends State<HomeClick> {
           child: new Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              new Text('Welcome Mohamed Hassan',
-              textDirection: TextDirection.ltr,
-              style: new TextStyle(
-                color: Colors.indigoAccent,
-                fontSize: 15,
-                fontWeight: FontWeight.bold,
-                fontStyle: FontStyle.italic,
-              ),),
-              new Text('Home Main',
+              new Text(
+                'Welcome Mohamed Hassan',
                 textDirection: TextDirection.ltr,
                 style: new TextStyle(
                   color: Colors.indigoAccent,
                   fontSize: 15,
                   fontWeight: FontWeight.bold,
                   fontStyle: FontStyle.italic,
-                ),),
+                ),
+              ),
+              new Text(
+                'Home Main',
+                textDirection: TextDirection.ltr,
+                style: new TextStyle(
+                  color: Colors.indigoAccent,
+                  fontSize: 15,
+                  fontWeight: FontWeight.bold,
+                  fontStyle: FontStyle.italic,
+                ),
+              ),
               new Checkbox(value: value3, onChanged: onChangedValue3),
               new Checkbox(value: value4, onChanged: onChangedValue4),
               new Checkbox(value: value5, onChanged: onChangedValue5),
-              new CheckboxListTile(value: value6, onChanged: onChangedValue6,activeColor: Colors.orange,
-              title: new Text('Do you want Notification'),secondary: new Icon(Icons.notifications_active),
-              selected: false,checkColor: Colors.yellow,),
-              new CheckboxListTile(value: value1, onChanged: onChangedValue1,activeColor: Colors.blue,
-                title: new Text('Do you want Notification for update app'),secondary: new Icon(Icons.notifications_active),
-                selected: false,checkColor: Colors.red,),
-              new CheckboxListTile(value: value2, onChanged: onChangedValue2,activeColor: Colors.cyan,
-                title: new Text('Do you want Access Gps in app'),secondary: new Icon(Icons.notifications_active),
-                selected: false,checkColor: Colors.indigo,),
+              new CheckboxListTile(
+                value: value6,
+                onChanged: onChangedValue6,
+                activeColor: Colors.orange,
+                title: new Text('Do you want Notification'),
+                secondary: new Icon(Icons.notifications_active),
+                selected: false,
+                checkColor: Colors.yellow,
+              ),
+              new CheckboxListTile(
+                value: value1,
+                onChanged: onChangedValue1,
+                activeColor: Colors.blue,
+                title: new Text('Do you want Notification for update app'),
+                secondary: new Icon(Icons.notifications_active),
+                selected: false,
+                checkColor: Colors.red,
+              ),
+              new CheckboxListTile(
+                value: value2,
+                onChanged: onChangedValue2,
+                activeColor: Colors.cyan,
+                title: new Text('Do you want Access Gps in app'),
+                secondary: new Icon(Icons.notifications_active),
+                selected: false,
+                checkColor: Colors.indigo,
+              ),
             ],
           ),
         ),
