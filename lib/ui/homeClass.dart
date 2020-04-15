@@ -1,3 +1,8 @@
+import 'dart:async';
+import 'dart:async';
+import 'dart:core';
+import 'dart:core';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -47,6 +52,8 @@ class SubClassRow extends StatelessWidget {
 }
 
 class SuperClassColum extends StatelessWidget {
+
+
   @override
   Widget build(BuildContext context) {
     return new Container(
@@ -109,6 +116,8 @@ class HomeClick extends StatefulWidget {
 }
 
 class HomeClickLister extends State<HomeClick> {
+
+
   Future<void> _neverSatisfied() async {
     return showDialog<void>(
       context: context,
@@ -119,7 +128,7 @@ class HomeClickLister extends State<HomeClick> {
           content: SingleChildScrollView(
             child: ListBody(
               children: <Widget>[
-                Text('You will have notification in your app. ',style: new TextStyle(fontSize: 15),),
+                Text('You will have Dialog in your app. ',style: new TextStyle(fontSize: 15),),
                 Text('You\’re like the app. I’m never have seen app like this. ',style: new TextStyle(fontSize: 15),),
               ],
             ),
@@ -142,7 +151,48 @@ class HomeClickLister extends State<HomeClick> {
     );
   }
 
-  void ShowBottomSheetNotification() {
+  void OnChangeValue(String text) {
+    setState(() {
+      MyName = 'OnChange :  $text';
+    });
+
+  }
+
+  Future ShowSimpleDialog() async{
+    switch(
+    await showDialog(context: context,
+    builder: (BuildContext context){
+
+      return SimpleDialog(title: new Text('data'),
+      children: <Widget>[
+
+        SimpleDialogOption(
+          onPressed: () { Navigator.pop(context, OnChangeValue('yes')); },
+          child: const Text('yes'),
+        ),
+        SimpleDialogOption(
+          onPressed: () { Navigator.pop(context, OnChangeValue('no')); },
+          child: const Text('no'),
+        ),
+        SimpleDialogOption(
+          onPressed: () { Navigator.pop(context, OnChangeValue('maybe')); },
+          child: const Text('maybe'),
+        ),
+
+
+      ],
+
+      );
+
+      })
+
+    )
+
+
+
+
+  }
+  void ShowBottomSheet() {
 
     showModalBottomSheet(
         context: context,
@@ -167,6 +217,7 @@ class HomeClickLister extends State<HomeClick> {
           );
         });
   }
+
 
   String name = '';
   String MyNumber = '';
@@ -244,6 +295,7 @@ class HomeClickLister extends State<HomeClick> {
     setState(() {
       MyName = 'OnChange :  $text';
     });
+
   }
 
   @override
@@ -314,9 +366,9 @@ class HomeClickLister extends State<HomeClick> {
                 icon: new Icon(Icons.notifications_active),
                 label: new Text('Get Notification')),
             new RaisedButton.icon(
-                onPressed: ShowBottomSheetNotification,
+                onPressed: ShowBottomSheet,
                 icon: new Icon(Icons.notifications),
-                label: new Text('Get Bottom Sheet Notification')),
+                label: new Text('Get Bottom Sheet ')),
           ],
         ),
       ),
@@ -481,3 +533,5 @@ class ScaffoActionBar extends StatelessWidget {
     );
   }
 }
+
+
